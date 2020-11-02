@@ -1,0 +1,73 @@
+
+body{
+	margin:0px;
+	padding:0px;
+}
+#banner{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:1340px;
+	height:340px;
+	background-color:white;
+	border:1px solid black;
+	padding:10px 10px 10px 10px;
+	user-select:none;
+	margin:0px 2px 0px 2px;
+}
+
+.MultiCarousel{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:98.5%;
+	height:340px;
+	background-color:black;
+	overflow:hidden;
+	user-select:none;
+	margin:10px 10px 10px 10px;
+}
+
+
+.images{
+	opacity:0.25;
+	padding:20px 0px 0px 0px;
+	float:left;
+	overflow:hidden;
+}
+
+#logo{
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+.active{
+	opacity:1;
+	padding:0px 0px 0px 0px;
+	width:250px;
+	height:340px;
+}
+
+#slider{
+	margin-top:190px;
+	z-index:9;
+}
+
+#slider .ui-slider-handle {
+  outline: 0;
+  background: orange;
+  border-radius: 50%;
+  position:absolute;
+  top: -10px;
+}
+
+#slider.ui-slider-horizontal {
+  top: 7.6em;
+  left: 5%;
+  height: .2em;
+  width: 65%;
+  border: white;
+  background: #ccc;
+  z-index:9;
+}

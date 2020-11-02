@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="styles/style.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+</head>
+<body> 
+<div id="banner">
+<div id="slider"></div>  
+		<div class="MultiCarousel">
+						<img class="images" id="1" src="images/black.jpg">
+              
+						<img class="images" id="2" src="images/Curon.jpg" class="active">
+              
+						<img class="images" id="3" src="images/DelhiCrime.jpg">
+                        
+                
+						<img class="images" id="4" src="images/IntoTheLight.jpg">
+
+                
+						<img class="images" id="5" src="images/LostInSpace.jpg">
+                        
+                
+						<img class="images" id="6" src="images/ShadowHunters.jpg">
+                        
+                
+						<img class="images" id="7" src="images/SnowPiercer.jpg">
+						
+						
+						<img id="logo" src="images/NetflixLogo.png">
+                        
+		</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  
+	var idArr = [];
+	var maxSlider = 0;
+	var x,i,z,prevNum=0;
+	var imgSrc,imgSrc2,imgSrcArr,imgTitle,imgSrcArr2,imgTitle2;
+	var imgArr = ["Black.jpg","Curon.jpg","DelhiCrime.jpg","IntoTheLight.jpg","LostInSpace.jpg",
+	"ShadowHunters.jpg","SnowPiercer.jpg","TheLastKingdom.jpg","LockeKey.jpg","Ozark.jpg",
+	"Black3.jpg","Black4.jpg","Black5.jpg","Black6.jpg","Black7.jpg"];
+    
+	j=1;
+
+	
+	$(".images").each(function(){
+    idArr.push($(this).attr("id"));
+	});
+	
+
+	var imgLen = imgArr.length;
+	var idLen = idArr.length;
+	k = imgLen-1;
+
+	
+	$("#slider").slider({
+	animation:"slow",
+	max:50,
+	min:0,
+	slide:function(event,ui){
+	maxSlider = $("#slider").slider("option", "max");
+	i=ui.value;
+	
+	var noOfIterations = Math.abs(idLen-imgLen);
+	
+	var valueAtAnimation = Math.floor(maxSlider/noOfIterations);
+	
+	$('#2').css("padding-bottom","0px");
+
+		if(i%(valueAtAnimation) == 0){
+		
+		$('#2').css("padding-top","0px");
+		$('#2').css("padding-bottom","0px");
+		
+		var fIdArr = [];
+		var bIdArr = [];
+		
+		if(i>prevNum){
+					
+			$('#2').animate({
+				opacity:1,
+				"width":"250",
+				"height":"340",	
+				"paddingTop":"-20px",
+				"paddngBottom":"-20px"
+			},1000,"linear",function() {
+			
+				console.log("forward");	
+				imgSrcArr = $("#2").attr('src');
+				imgTitle = imgSrcArr.split('/');
+				$.each(imgArr, function( y, l ){ if( l == imgTitle[1]){
+				console.log( "Index #" + y + ": " + l ); 
+				fIdArr.push(y);
+				}
+				});
+				
+				var fId = fIdArr[0];
+				for(z=0;z<idArr.length;z++){
+				imgSrc = "images/"+imgArr[z+fId];
+				var u = z+fId;
+				if(u <= imgLen){
+				setTimeout($('#'+(z+1)).attr("src", imgSrc),1000);
+				}
+				else{
+				break;
+				}
+				}
+			});		
+					
+				
+			}
+		else{
+		
+				console.log("backward");
+				imgSrcArr2 = $("#2").attr('src');
+				imgTitle2 = imgSrcArr2.split('/');
+				$.each(imgArr, function( f, t ){ if( t == imgTitle2[1]){
+				console.log( "Index #" + f + ": " + t ); 
+				bIdArr.push(f);
+				}
+				});
+				
+				var bId = bIdArr[0];
+				for(x=-3;x<idLen;x++){
+				imgSrc2 = "images/"+imgArr[bId+x];
+				var v = bId+x;
+				if(v >= -1){
+				setTimeout($('#'+ (x+3)).attr("src", imgSrc2),1000);	
+				}	
+				else{
+				break;
+				}
+				}
+	
+			
+			}
+			
+		i+valueAtAnimation;
+		
+		prevNum = i;
+		
+		}
+	},
+	stop:function(event,ui){
+	//console.log(ui.value);
+	}
+	
+	});
+	
+	
+});
+
+</script>
+
+</body>
+</html>
