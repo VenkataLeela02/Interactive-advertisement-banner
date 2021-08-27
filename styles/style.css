@@ -69,5 +69,5 @@ body{
   width: 65%;
   border: white;
   background: #ccc;
-  z-index:9;
+  z-index:99;
 }
